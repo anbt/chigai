@@ -26,7 +26,7 @@ function cleanTitle($title) {
 $list = [
 
 ];
-$n = 'chigaiha';
+$n = 'chigai-master';
 // 99bako == chu
 
 if ($n == 'chu') {
@@ -226,8 +226,9 @@ else if ($n == 'bylist') {
 	echo "Done<br>";
 }
 else if ($n == 'chigai-master') {
-	for ($p = 24; $p > 0; --$p) {
-		$u = "http://chigai-master.com/archives/category/言葉・表現" . ($p > 1 ? "/page/$p" : "");
+	for ($p = 15; $p > 0; --$p) {
+		// $u = "http://chigai-master.com/archives/category/言葉・表現" . ($p > 1 ? "/page/$p" : "");
+		$u = "http://imijiten.com/category/kanjiimi/" . ($p > 1 ? "page/$p/" : "");
 
 		$c = curl_init($u);
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -293,5 +294,4 @@ else if ($n == 'chigaiha') {
 		echo "Done page $p<br>";
 	}
 }
-
 
