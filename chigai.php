@@ -22,28 +22,31 @@ function cleanTitle($title) {
 	$title = str_replace('  ', ' ', $title);
 	return $title;
 }
+$c = curl_init();
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
+curl_setopt($c, CURLOPT_HEADER, false);
+curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+$doc = new DOMDocument();
+function docurl($u) {
+	global $c;
+	curl_setopt($c, CURLOPT_URL, $u);
+	return curl_exec($c);
+}
 
 // s='';Array.from($0.getElementsByTagName('a')).forEach(function (u,i) { s += '"' + u + '" => "' + u.innerText + '",' + "\n"; })
 $list = [
 
 ];
-$n = 'bylist';
+$n = 'chigaiha';
 // 99bako == chu
 
 if ($n == 'chu') {
-	for ($p = 22; $p > 0; --$p) {
+	for ($p = 3; $p > 0; --$p) {
 		// $u = "https://chu-channel.com/category/knowledge/meaning" . ($p > 1 ? "/page/$p" : "");
 		$u = "https://99bako.com/category/chigai" . ($p > 1 ? "/page/$p" : "");
 
-		$c = curl_init($u);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
-
-		$doc = new DOMDocument();
+		$s = docurl($u);
 		@$doc->loadHTML($s);
 		$path = new DOMXPath($doc);
 
@@ -51,13 +54,7 @@ if ($n == 'chu') {
 		$a = $a->getElementsByTagName('article');
 		for ($i = $a->length - 1; $i > -1; --$i) {
 			$l = $a->item($i)->childNodes->item(0);
-			$c = curl_init($l->getAttribute('href'));
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-			curl_setopt($c, CURLOPT_HEADER, false);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			$s = curl_exec($c);
-			curl_close($c);
+			$s = docurl($l->getAttribute('href'));
 			$title = cleanTitle($l->getAttribute('title'));
 			file_put_contents("wfio://test/$title.html", $s);
 		}
@@ -68,16 +65,8 @@ if ($n == 'chu') {
 else if ($n == 'shittoku') {
 	for ($p = 1; $p > 0; --$p) {
 		$u = "http://知っ得袋.biz/category/言葉の違い" . ($p > 1 ? "/page/$p" : "");
-
-		$c = curl_init($u);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
-
-		$doc = new DOMDocument();
+		
+		$s = docurl($u);
 		@$doc->loadHTML($s);
 		
 		$a = $doc->getElementById('topnews');
@@ -99,31 +88,18 @@ else if ($n == 'shittoku') {
 	}
 }
 else if ($n == 'allguide') {
-	for ($p = 15; $p > 0; --$p) {
-		$u = "https://chigai-allguide.com/category/言葉/類語・表現・意味/" . ($p > 1 ? "page/$p/" : "");
+	for ($p = 3; $p > 0; --$p) {
+		// $u = "https://chigai-allguide.com/category/言葉/類語・表現・意味/" . ($p > 1 ? "page/$p/" : "");
+		$u = "https://chigai-allguide.com/category/言葉/漢字・読み/" . ($p > 1 ? "page/$p/" : "");
 
-		$c = curl_init($u);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
-
-		$doc = new DOMDocument();
+		$s = docurl($u);
 		@$doc->loadHTML($s);
 		
 		$a = $doc->getElementById('post_list');
 		$a = $a->getElementsByTagName('li');
 		for ($i = $a->length - 1; $i > -1; --$i) {
 			$l = $a->item($i)->getElementsByTagName('a')->item(1);
-			$c = curl_init($l->getAttribute('href'));
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-			curl_setopt($c, CURLOPT_HEADER, false);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			$s = curl_exec($c);
-			curl_close($c);
+			$s = docurl($l->getAttribute('href'));
 			$title = cleanTitle($l->nodeValue);
 			file_put_contents("wfio://test/$title.html", $s);
 		}
@@ -134,15 +110,7 @@ else if ($n == 'allguide') {
 else if ($n == 'chigai') {
 	$u = "http://www.chigai.org/%E3%81%93%E3%81%A8%E3%81%B0%E3%81%AE%E4%B8%AD%E3%81%AE%E9%81%95%E3%81%84/";
 
-	$c = curl_init($u);
-	curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-	curl_setopt($c, CURLOPT_HEADER, false);
-	curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-	$s = curl_exec($c);
-	curl_close($c);
-
-	$doc = new DOMDocument();
+	$s = docurl($u);
 	@$doc->loadHTML($s);
 	$path = new DOMXPath($doc);
 	
@@ -150,13 +118,7 @@ else if ($n == 'chigai') {
 	$a = $a->getElementsByTagName('li');
 	for ($i = $a->length - 1; $i > -1; --$i) {
 		$l = $a->item($i)->getElementsByTagName('a')->item(0);
-		$c = curl_init($l->getAttribute('href'));
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
+		$s = docurl($l->getAttribute('href'));
 		$doc2 = new DOMDocument();
 		@$doc2->loadHTML($s);
 		$path = new DOMXPath($doc2);
@@ -181,15 +143,7 @@ else if ($n == '11p') {
 		$myu = 'http://tetteikaisetu-chigai.lance5.net/';
 		$u = $myu . "aa-$p.html";
 
-		$c = curl_init($u);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
-
-		$doc = new DOMDocument();
+		$s = docurl($u);
 		@$doc->loadHTML($s);
 		$path = new DOMXPath($doc);
 		
@@ -197,13 +151,7 @@ else if ($n == '11p') {
 		$a = $a->getElementsByTagName('li');
 		for ($i = $a->length - 1; $i > -1; --$i) {
 			$l = $a->item($i)->getElementsByTagName('a')->item(0);
-			$c = curl_init($myu . $l->getAttribute('href'));
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-			curl_setopt($c, CURLOPT_HEADER, false);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			$s = curl_exec($c);
-			curl_close($c);
+			$s = docurl($myu . $l->getAttribute('href'));
 			$title = cleanTitle($l->nodeValue);
 			file_put_contents("wfio://test/$title.html", $s);
 		}
@@ -212,14 +160,8 @@ else if ($n == '11p') {
 	}
 }
 else if ($n == 'bylist') {
-	foreach ($list as $url => $title) {
-		$c = curl_init($url);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
+	foreach ($list as $u => $title) {
+		$s = docurl($u);
 		$title = cleanTitle($title);
 		file_put_contents("wfio://test/$title.html", $s);
 	}
@@ -231,28 +173,14 @@ else if ($n == 'chigai-master') {
 		// $u = "http://chigai-master.com/archives/category/言葉・表現" . ($p > 1 ? "/page/$p" : "");
 		$u = "http://imijiten.com/category/kanjiimi/" . ($p > 1 ? "page/$p/" : "");
 
-		$c = curl_init($u);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
-		
-		$doc = new DOMDocument();
+		$s = docurl($u);
 		@$doc->loadHTML('<?xml encoding="utf-8"?>' . $s);
 		$path = new DOMXPath($doc);
 		
 		$a = getElementsByClassName($path, 'article-header');
 		for ($i = $a->length - 1; $i > -1; --$i) {
 			$l = $a->item($i)->getElementsByTagName('a')->item(0);
-			$c = curl_init($l->getAttribute('href'));
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-			curl_setopt($c, CURLOPT_HEADER, false);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			$s = curl_exec($c);
-			curl_close($c);
+			$s = docurl($l->getAttribute('href'));
 			$title = cleanTitle($l->nodeValue);
 			file_put_contents("wfio://test/$title.html", $s);
 		}
@@ -261,18 +189,10 @@ else if ($n == 'chigai-master') {
 	}
 }
 else if ($n == 'chigaiha') {
-	for ($p = 3; $p > 0; --$p) {
-		$u = "http://xn--n8j9do164a.net/archives/category/word" . ($p > 1 ? "/page/$p" : "");
-
-		$c = curl_init($u);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-		$s = curl_exec($c);
-		curl_close($c);
+	for ($p = 1; $p > 0; --$p) {
+		$u = "https://xn--n8j9do164a.net/archives/category/word" . ($p > 1 ? "/page/$p" : "");
 		
-		$doc = new DOMDocument();
+		$s = docurl($u);
 		@$doc->loadHTML($s);
 		$path = new DOMXPath($doc);
 		
@@ -281,13 +201,7 @@ else if ($n == 'chigaiha') {
 		for ($i = $a->length - 1; $i > -1; --$i) {
 			if ($a1->item($i)->childNodes->item(0)->nodeValue != '言葉の違い') continue;
 			$l = $a->item($i)->childNodes->item(0);
-			$c = curl_init($l->getAttribute('href'));
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_BINARYTRANSFER, true);
-			curl_setopt($c, CURLOPT_HEADER, false);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			$s = curl_exec($c);
-			curl_close($c);
+			$s = docurl($l->getAttribute('href'));
 			$title = cleanTitle($l->nodeValue);
 			file_put_contents("wfio://test/$title.html", $s);
 		}
@@ -295,4 +209,22 @@ else if ($n == 'chigaiha') {
 		echo "Done page $p<br>";
 	}
 }
-
+else if ($n == 'st38naruhodo') {
+	$cols = ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra'];
+	foreach ($cols as $col) {
+		$s = docurl("http://www.st38.net/naruhodo-nattoku-chigai/aa-$col.html");
+		@$doc->loadHTML($s);
+		$path = new DOMXPath($doc);
+		
+		$con = getElementsByClassName($path, 'contents2');
+		for ($i = 0; $i < 2; ++$i) {
+			$a = $con->item($i)->getElementsByTagName('a');
+			for ($j = 0; $j < $a->length; ++$j) {
+				$title = cleanTitle($a->item($j)->nodeValue);
+				$s = docurl('http://www.st38.net/naruhodo-nattoku-chigai/' . $a->item($j)->getAttribute('href'));
+				file_put_contents("wfio://test/$col/$title.html", $s);
+			}
+		}
+		echo "Done column $col<br>";
+	}
+}
