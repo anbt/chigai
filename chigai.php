@@ -1,5 +1,5 @@
 <?php
-//test
+
 ini_set('max_execution_time', 3600);
 header('Content-Type: text/html; charset=UTF-8');
 function getElementsByClassName($path, $class) {
