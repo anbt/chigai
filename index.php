@@ -4,6 +4,7 @@ require_once 'initsess.php';
 
 $t = 'Header set Cache-Control "max-age=' . CACHE_TIME . ', public"';
 $t .= "\n" . 'Header set Pragma "public"';
+$t .= "\n" . 'Header set Content-Type "text/html; charset=utf-8"';
 file_put_contents('.htaccess', $t);
 
 require_once 'buildsess.php';
