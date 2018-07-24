@@ -1,3 +1,2 @@
 Header set Cache-Control "max-age=31104000, public"
 Header set Pragma "public"
-Header set Content-Type "text/html; charset=utf-8"
