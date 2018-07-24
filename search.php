@@ -9,7 +9,7 @@ $index = 0;
 foreach ($a as $fol => &$b) {
 	foreach ($b as $name) {
 		if (strpos($name, $s) !== false) {
-			$ret .= '<b>' . sprintf("%02d", ++$index) . '</b>. <a class="change-color" target="_blank" href="' . "serve.php?fol=$fol&name=$name" . '">' . "$fol/" . pathinfo($name, PATHINFO_BASENAME) . '</a><br>';
+			$ret .= '<b>' . sprintf("%02d", ++$index) . '</b>. <a class="change-color" target="_blank" href="' . "chigai/$fol/$name" . '">' . "$fol/" . pathinfo($name, PATHINFO_BASENAME) . '</a><br>';
 		}
 	}
 }
