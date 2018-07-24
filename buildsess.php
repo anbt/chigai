@@ -2,7 +2,7 @@
 
 $textfile = 'dir.txt';
 
-if (@$_GET['b'] == 1) {
+if (0 && @$_GET['b'] == 1) {
 	// put folders to txt
 	$a = array_diff(scandir('chigai'), ['..', '.']);
 	$s = '';
