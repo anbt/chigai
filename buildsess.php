@@ -30,7 +30,10 @@ if (file_exists($textfile) && !isset($_SESSION['a'])) {
 		$fol = trim($line[0]);
 		if (!isset($a[$fol]))
 			$a[$fol] = [];
-		$a[$fol][] = trim($line[1]);
+		$a[$fol][] = array(
+			'ori' => trim($line[1]),
+			'enc' => encFilename(trim($line[1]))
+		);
 	}
 	$_SESSION['a'] = $a;
 }
@@ -38,4 +41,8 @@ if (file_exists($textfile) && !isset($_SESSION['a'])) {
 if (!isset($_SESSION['a'])) {
 	echo '<a href="?b=1">Build again</a><br>';
 	exit('Can not store to session');
+}
+
+function encFilename($s) {
+	return $s;
 }
