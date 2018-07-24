@@ -18,6 +18,7 @@ if (substr($s, 0, 1) == '/') { // folder display
 	}
 }
 else { // file search
+	$s = strtolower($s);
 	foreach ($a as $fol => &$b) {
 		foreach ($b as $name) {
 			if (strpos($name['ori'], $s) !== false) {

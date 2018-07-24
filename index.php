@@ -106,6 +106,11 @@ searchinput.addEventListener("keydown", function(e) {
 		doSearch();
 		e.preventDefault();
 	}
+	else if (e.keyCode == 191) {
+		searchinput.focus();
+		searchinput.select();
+		e.preventDefault();
+	}
 	e.stopPropagation();
 });
 function doSearch() {
@@ -118,5 +123,12 @@ function doSearch() {
 }
 searchinput.focus();
 searchinput.select();
+document.addEventListener('keydown', function(e) {
+	if (e.keyCode == 191) {
+		searchinput.focus();
+		searchinput.select();
+		e.preventDefault();
+	}
+});
 </script>
 </html>
