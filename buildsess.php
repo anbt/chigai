@@ -50,6 +50,8 @@ function jaSplit($s) {
 to % format, %[a-f]* is kept, %[0-9]* is replaced by _
 keep %20 (space)
 keep alphabet char
+how to do with (, )
+99bako/工場（プラントとファクトリー／plant,factory）の違いと使い分け.html
 */
 function encFilename($s) {
 	$ext = '.' . pathinfo($s, PATHINFO_EXTENSION);
