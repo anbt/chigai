@@ -43,6 +43,33 @@ if (!isset($_SESSION['a'])) {
 	exit('Can not store to session');
 }
 
+function jaSplit($s) {
+	return preg_split('//u', $s, null, PREG_SPLIT_NO_EMPTY);
+}
+/*
+to % format, %[a-f]* is kept, %[0-9]* is replaced by _
+keep %20 (space)
+keep alphabet char
+*/
 function encFilename($s) {
-	return $s;
+	$ext = '.' . pathinfo($s, PATHINFO_EXTENSION);
+	$s = str_replace($ext, '', $s);
+	$tmp = jaSplit($s);
+	$s = '';
+	foreach ($tmp as $v) {
+		if (!preg_match('/[A-Za-z0-9]/', $v)) {
+			if ($v == ' ')
+				$v = '%20';
+			else {
+				$v = bin2hex($v);
+				$v = chunk_split($v, 2, '%');
+				$v = '%' . substr($v, 0, strlen($v) - 1);
+				// $v = str_replace('%20', 'jch', $v);
+				$v = preg_replace('/%[0-9]./', '_', $v);
+				// $v = str_replace('jch', '%20', $v);
+			}
+		}
+		$s .= $v;
+	}
+	return $s . $ext;
 }
