@@ -54,6 +54,14 @@ if (!isset($_SESSION['a'])) {
 	zoom: 10;
 	z-index: 9999;
 }
+#wrap {
+	font-size: 25px;
+	line-height: 2;
+	font-weight: 600;
+}
+.change-color {
+	color: #504d86;
+}
 </style>
 </head><body>
 <img src='ajax-loader.gif' alt='Loading...' id='loading' class='loader' style="display: none">
