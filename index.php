@@ -2,9 +2,9 @@
 
 require_once 'initsess.php';
 
-// $t = 'Header set Cache-Control "max-age=' . CACHE_TIME . ', public"';
-// $t .= "\n" . 'Header set Pragma "public"';
-// file_put_contents('.htaccess', $t);
+$t = 'Header set Cache-Control "max-age=' . CACHE_TIME . ', public"';
+$t .= "\n" . 'Header set Pragma "public"';
+file_put_contents('.htaccess', $t);
 
 $textfile = 'dir.txt';
 if (@$_GET['b'] == 1) {
@@ -57,7 +57,7 @@ if (!isset($_SESSION['a'])) {
 </style>
 </head><body>
 <img src='ajax-loader.gif' alt='Loading...' id='loading' class='loader' style="display: none">
-<input style="font-size: 40px; line-height: 40px;" id="searchinput" size="15" tabindex="-1" value="併殺"></input> <a href="?b=1">Build again</a>
+<input style="font-size: 40px; line-height: 40px;" id="searchinput" size="15" tabindex="-1" value="水準"></input> <a href="?b=1">Build again</a>
 <hr>
 <div id="wrap"></div>
 </body>
