@@ -31,7 +31,7 @@ if (file_exists($textfile) && !isset($_SESSION['a'])) {
 		if (!isset($a[$fol]))
 			$a[$fol] = [];
 		$a[$fol][] = array(
-			'ori' => trim($line[1]),
+			'ori' => strtolower(trim($line[1])),
 			'enc' => encFilename(trim($line[1]))
 		);
 	}
