@@ -1,5 +1,7 @@
 <?php
 
+require_once 'func.php';
+
 session_start();
 session_unset(); // $_SESSION = empty
 session_destroy(); // delede session id, obj ...
