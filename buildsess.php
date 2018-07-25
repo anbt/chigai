@@ -40,7 +40,7 @@ if (file_exists($textfile) && !isset($_SESSION['a'])) {
 }
 
 if (!isset($_SESSION['a'])) {
-	echo '<a href="?b=1">Build again</a><br>';
+	echo buildSessAgain();
 	exit('Can not store to session');
 }
 

@@ -30,7 +30,7 @@ require_once 'buildsess.php';
 </style>
 </head><body>
 <img src='ajax-loader.gif' alt='Loading...' id='loading' class='loader' style="display: none">
-<input style="font-size: 40px; line-height: 40px;" id="searchinput" size="15" tabindex="-1" value="水準"></input> <a href="?b=1">Build again</a>
+<input style="font-size: 40px; line-height: 40px;" id="searchinput" size="15" tabindex="-1" value="水準"></input> <?php echo buildSessAgain(); ?>
 <hr>
 <div id="wrap"></div>
 </body>

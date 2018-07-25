@@ -29,3 +29,7 @@ if (!session_start(
 	echo 'Can not start session!';
 	exit();
 }
+
+function buildSessAgain($t = 'Build again') {
+	return '<a href="free.php">' . $t . '</a>';
+}
