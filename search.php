@@ -21,7 +21,7 @@ else { // file search
 	$s = strtolower($s);
 	foreach ($a as $fol => &$b) {
 		foreach ($b as $name) {
-			if (strpos($name['ori'], $s) !== false) {
+			if (strpos($name['low'], $s) !== false) {
 				$ret .= '<b>' . sprintf("%02d", ++$index) . '</b>. <a class="change-color" target="_blank" href="' . "chigai/$fol" . '">' . $fol. '</a>/<a class="change-color" target="_blank" href="' . "chigai/$fol/" . $name['enc'] . '">' . $name['ori'] . '</a><br>';
 			}
 		}

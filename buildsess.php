@@ -31,7 +31,8 @@ if (file_exists($textfile) && !isset($_SESSION['a'])) {
 		if (!isset($a[$fol]))
 			$a[$fol] = [];
 		$a[$fol][] = array(
-			'ori' => strtolower(trim($line[1])),
+			'ori' => trim($line[1]),
+			'low' => strtolower(trim($line[1])),
 			'enc' => encFilename(trim($line[1]))
 		);
 	}
@@ -50,8 +51,9 @@ function jaSplit($s) {
 to % format, %[a-f]* is kept, %[0-9]* is replaced by _
 keep %20 (space)
 keep alphabet char
-how to do with (, )
+how to do with one-byte ,()/&
 99bako/工場（プラントとファクトリー／plant,factory）の違いと使い分け.html
+chigai-allguide/「q&a」と「faq」の違い.html
 */
 function encFilename($s) {
 	$ext = '.' . pathinfo($s, PATHINFO_EXTENSION);
