@@ -7,8 +7,8 @@ http://nihongo.koakishiki.com/
 	kotowaza-kanyouku 40
 http://chu-channel.com/category/knowledge/meaning/page/1 2017年8月1日 『右翼』と『左翼』
 http://xn--j9j243ljipfhp.biz/category/%E8%A8%80%E8%91%89%E3%81%AE%E9%81%95%E3%81%84/page/1 2018年4月27日 感心と関心の違い
-https://chigai-allguide.com/category/%E8%A8%80%E8%91%89/%E6%BC%A2%E5%AD%97%E3%83%BB%E8%AA%AD%E3%81%BF/page/14/ 特徴と特長
-https://chigai-allguide.com/category/%E8%A8%80%E8%91%89/%E9%A1%9E%E8%AA%9E%E3%83%BB%E8%A1%A8%E7%8F%BE%E3%83%BB%E6%84%8F%E5%91%B3/page/15/ 特徴と特長
+https://chigai-allguide.com/category/%E8%A8%80%E8%91%89/%E6%BC%A2%E5%AD%97%E3%83%BB%E8%AA%AD%E3%81%BF/page/1/ 特徴と特長
+https://chigai-allguide.com/category/%E8%A8%80%E8%91%89/%E9%A1%9E%E8%AA%9E%E3%83%BB%E8%A1%A8%E7%8F%BE%E3%83%BB%E6%84%8F%E5%91%B3/page/1/ 特徴と特長
 https://99bako.com/category/chigai/page/1 ｢香り･香る｣と｢薫り･薫る｣
 http://bimyo-kotoba.com/b-back.html 404
 http://www.chigai.org/%E3%81%93%E3%81%A8%E3%81%B0%E3%81%AE%E4%B8%AD%E3%81%AE%E9%81%95%E3%81%84/
@@ -21,6 +21,11 @@ http://imijiten.com/category/kanjiimi/ id=799 飛ぶと跳ぶ
 http://www.st38.net/naruhodo-nattoku-chigai/
 
 Check: 2018年6月7日
+PreCheck: 2018年8月9日
+https://xn--n8j9do164a.net/archives/category/word
+https://chigai-allguide.com/category/%E8%A8%80%E8%91%89/%E6%BC%A2%E5%AD%97%E3%83%BB%E8%AA%AD%E3%81%BF/page/2/
+https://chigai-allguide.com/category/%E8%A8%80%E8%91%89/%E9%A1%9E%E8%AA%9E%E3%83%BB%E8%A1%A8%E7%8F%BE%E3%83%BB%E6%84%8F%E5%91%B3/
+PreCheck
 
 http://xn--n8jv600a.net/page/17/ kotoba chigai dehanai ?
 	http://xn--n8jv600a.net/category/%E7%94%9F%E6%B4%BB/page/13/
