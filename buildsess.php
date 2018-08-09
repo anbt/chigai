@@ -51,9 +51,10 @@ function jaSplit($s) {
 to % format, %[a-f]* is kept, %[0-9]* is replaced by _
 keep %20 (space)
 keep alphabet char
-how to do with one-byte ,()/&
+how to do with one-byte ,()/&!
 99bako/工場（プラントとファクトリー／plant,factory）の違いと使い分け.html
 chigai-allguide/「q&a」と「faq」の違い.html
+=> convert multi-byte char only
 */
 function encFilename($s) {
 	$ext = '.' . pathinfo($s, PATHINFO_EXTENSION);
@@ -65,12 +66,15 @@ function encFilename($s) {
 			if ($v == ' ')
 				$v = '%20';
 			else {
-				$v = bin2hex($v);
-				$v = chunk_split($v, 2, '%');
-				$v = '%' . substr($v, 0, strlen($v) - 1);
-				// $v = str_replace('%20', 'jch', $v);
-				$v = preg_replace('/%[0-9]./', '_', $v);
-				// $v = str_replace('jch', '%20', $v);
+				$t = bin2hex($v);
+				if (strlen($t) > 2) {
+					$v = $t;
+					$v = chunk_split($v, 2, '%');
+					$v = '%' . substr($v, 0, strlen($v) - 1);
+					// $v = str_replace('%20', 'jch', $v);
+					$v = preg_replace('/%[0-9]./', '_', $v);
+					// $v = str_replace('jch', '%20', $v);
+				}
 			}
 		}
 		$s .= $v;
